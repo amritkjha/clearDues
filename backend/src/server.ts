@@ -1,7 +1,10 @@
 import dotenv from "dotenv";
 import { app } from './app.js';
+import { initRedis } from "./config/redis.js";
 
 dotenv.config();
+
+initRedis();
 
 const PORT = process.env.PORT || 3000;
 

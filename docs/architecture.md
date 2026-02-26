@@ -40,3 +40,25 @@ Invoice Creation Flow:
   - SMTP_USER
   - SMTP_PASS
   - JWT_SECRET
+
+## Redis Layer
+
+Purpose:
+Handles distributed job scheduling and delayed reminder execution.
+
+Provider:
+Upstash (Managed Redis – Free Tier)
+
+Connection Strategy:
+- Explicit initialization via initRedis()
+- No side-effect imports
+- TLS enabled (required for rediss://)
+- Fail-fast if REDIS_URL is missing
+
+Design Decision:
+Redis is initialized during server startup, not during module import.
+This avoids environment race conditions and improves stability.
+
+Resilience:
+- maxRetriesPerRequest: 3
+- enableReadyCheck: false (prevents TLS readiness blocking)

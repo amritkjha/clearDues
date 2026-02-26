@@ -1,4 +1,8 @@
 # Data Model V1
+Database: PostgreSQL
+ORM: Prisma
+Enums strictly enforced in DB layer
+Cascade deletes enabled for relational integrity
 
 ## User
 Description:

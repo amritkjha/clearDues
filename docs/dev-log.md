@@ -5,3 +5,17 @@
 - Express base server created
 - Centralized error handling added
 - Environment variable management configured
+
+## Day 2 – Database Layer
+
+- Prisma initialized
+- PostgreSQL connected
+- Enums defined (InvoiceStatus, ReminderStage, ReminderJobStatus)
+- Relational integrity configured with cascade deletes
+- Index added on ReminderJob.scheduledFor
+- Migration executed successfully
+- Integrated Upstash Redis
+- Resolved TypeScript module import issues
+- Implemented explicit Redis initialization (initRedis)
+- Avoided side-effect imports
+- Verified stable connection before queue integration
