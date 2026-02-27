@@ -62,3 +62,10 @@ This avoids environment race conditions and improves stability.
 Resilience:
 - maxRetriesPerRequest: 3
 - enableReadyCheck: false (prevents TLS readiness blocking)
+
+### Validation Layer
+
+- All request validation handled via Zod schemas.
+- Validation middleware parses body, params, query.
+- Controllers never contain validation logic.
+- Zod errors forwarded to centralized error handler.

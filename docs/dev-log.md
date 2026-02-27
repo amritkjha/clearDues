@@ -19,3 +19,9 @@
 - Implemented explicit Redis initialization (initRedis)
 - Avoided side-effect imports
 - Verified stable connection before queue integration
+
+## Day 3 – Validation Middleware Added
+
+- Created centralized validate middleware.
+- Integrated Zod-based request validation pattern.
+- Ensured controller layer remains validation-free.
