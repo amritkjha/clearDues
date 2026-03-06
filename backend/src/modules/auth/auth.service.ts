@@ -32,3 +32,34 @@ export const registerUser = async (userData: RegisterInput) => {
 
     return {token};
 }
+export const loginUser = async (email: string, password: string) => {
+    const user = await prisma.user.findUnique({ where: { email } });
+
+    if (!user) {
+        const error: any = new Error("Invalid credentials");
+        error.statusCode = 400;
+        throw error;
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+        const error: any = new Error("Invalid credentials");
+        error.statusCode = 400;
+        throw error;
+    }
+
+    if (!process.env.JWT_SECRET) {
+        throw new Error("JWT_SECRET not configured");
+    }
+
+    const token = jwt.sign(
+        { userId: user._id },
+        process.env.JWT_SECRET,
+        { expiresIn: "7d" }
+    );
+
+    return {
+        token,
+    };
+};

@@ -4,6 +4,7 @@ import helmet from "helmet";
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import authRoutes from './modules/auth/auth.routes.js';
 
 export const app = express();
 app.use(cors());
@@ -15,5 +16,6 @@ app.use(morgan('dev'));
 app.get('/', (_:any, res:Response) => {
     res.status(200).json({ message: 'Welcome to the ClearDues API!' });
 });
+app.use('/api/auth', authRoutes)
 
 app.use(errorHandler);
